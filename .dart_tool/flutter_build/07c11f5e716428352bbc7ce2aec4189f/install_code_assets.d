@@ -1,0 +1,1 @@
+ E:\\Repos\\MobileDev\\oneUpApp\\.dart_tool\\flutter_build\\07c11f5e716428352bbc7ce2aec4189f\\native_assets.json: 
