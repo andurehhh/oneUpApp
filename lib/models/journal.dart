@@ -3,10 +3,10 @@ import 'dart:ffi';
 
 import 'package:one_up_app/models/journal_entry.dart';
 
-class journal{
+class Journal{
   Int? journalId;
   String? journalName;
   String? journalDescription;
   DateTime? startDate;
-  List<journalEntry> journalEntries = [];
+  List<JournalEntry> journalEntries = [];
 }

@@ -67,8 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
         notifyTime: (hour: 12,minute: 30)
       );
 
-      testGoal.completedDates = [DateTime(2025,11,10),DateTime(2025,11,9),DateTime(2025,11,8)];
-
       Map<String,dynamic> goal = testGoal.toMap();
       print(goal);
       print(goal['daysToRemind'].runtimeType);
