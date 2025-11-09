@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../models/goal.dart';
+
 class DatabaseHelper{
   //Singleton Instance
   static final DatabaseHelper _instance = DatabaseHelper._init();
@@ -27,7 +29,7 @@ Future<Database> get database async {
         join(await getDatabasesPath(), 'goals.db'),
         onCreate: (db,version){
           return db.execute(
-            'CREATE TABLE IF NOT EXISTS goals_db('
+            'CREATE TABLE IF NOT EXISTS goals_tbl('
                 'goalId INTEGER PRIMARY KEY,'
                 'goalName TEXT NOT NULL,'
                 'goalDescription TEXT,'
@@ -43,4 +45,32 @@ Future<Database> get database async {
       version: 1,
     );
   }
+
+  Future<List<Goal>> getAllGoals() async{
+    List<Goal> goals = [];
+    final db = await database;
+    final List<Map<String,Object?>> goalMaps = await db.query('goals_tbl',orderBy: 'orderIndex');
+
+    for(var rawGoal in goalMaps){
+      Goal goal = Goal.fromMap(rawGoal);
+      goals.add(goal);
+    }
+    return goals;
+  }
+
+  Future<void> insertGoal(Goal goal) async{
+    final db = await database;
+    await db.insert('goals_tbl',goal.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<void> updateGoal(Goal goal) async{
+    final db = await database;
+    await db.update('goals_tbl', goal.toMap(), where: 'goalId = ?',whereArgs: [goal.goalId]);
+  }
+
+  Future<void> deleteGoal (Goal goal) async{
+    final db = await database;
+    await db.delete('goals_tbl',where: 'goalId = ?', whereArgs: [goal.goalId]);
+  }
+
 }

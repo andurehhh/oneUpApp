@@ -63,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
         goalName: "learn Dart",
         daysToRemind: ["Monday,Tuesday,Wednesday"],
         startDate: DateTime.now(),
-        endDate: (2025,12,25),
-        notifyTime: (hour: 12,minute: 30)
+        endDate: DateTime(2025,12,25),
+        notifyTime: TimeOfDay(hour: 12,minute: 30)
       );
 
       Map<String,dynamic> goal = testGoal.toMap();
