@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'models/goal.dart';
 import 'screens/home_screen.dart';
 void main() {
@@ -29,7 +30,18 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
+        colorScheme: ColorScheme.light(
+            surface: Color(0xFFfcf9ea),
+          primary: Color(0xFFbadfdb),
+          secondary: Color(0xFF73a09c),
+          tertiary: Color(0xFFffbdbd),
+          background: Color(0xFFffa4a4),
+          error: Colors.redAccent,
+          onSurface: Color(0xFF6a4e4e),
+          onPrimary: Color(0xffe5decc)
+        ),
+        fontFamily: GoogleFonts.fredoka().fontFamily,
+        useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: const HomeScreen(),
